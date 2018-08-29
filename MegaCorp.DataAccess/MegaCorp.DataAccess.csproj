@@ -46,6 +46,7 @@
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="Convert.cs" />
     <Compile Include="DataAccessException.cs" />
+    <Compile Include="DepartmentRepository.cs" />
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="RepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
