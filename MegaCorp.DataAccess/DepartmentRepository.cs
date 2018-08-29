@@ -10,26 +10,23 @@ namespace MegaCorp.DataAccess
 {
     public class DepartmentRepository: RepositoryBase
     {
-        public DepartmentRepository() : base(ConnectionStrings.LocalDb)
-        {
-
-        }
+        public DepartmentRepository() : base(ConnectionStrings.LocalDb) { }
 
         public List<Department> GetAllDepartments()
         {
-            string sql = SqlQueries.SelectAll + " Departments";
-            List<Department> departments = new List<Department>(0);
+            string sql = $"{SqlQueries.SelectAll} Employees; {SqlQueries.SelectAll} Departments;";  // 1..*
             DataSet resultSet = Execute(sql);
-            List<Employee> employees = new List<Employee>(0);
             Dictionary<Employee, int> employeeDepartmentFK = new Dictionary<Employee, int>();
             foreach(DataRow employeeRow in resultSet.Tables[0].Rows)
             {
                 Employee e = Convert.ToEmployee(employeeRow, out int departmentFK);
                 employeeDepartmentFK.Add(e, departmentFK);
             }
-            foreach(DataRow deparmentRow in resultSet.Tables[1].Rows)
+            List<Department> departments = new List<Department>(0);
+            foreach(DataRow departmentRow in resultSet.Tables[1].Rows)
             {
-
+                Department d = Convert.ToDepartment(departmentRow, employeeDepartmentFK);
+                departments.Add(d);
             }
             return departments;
         }

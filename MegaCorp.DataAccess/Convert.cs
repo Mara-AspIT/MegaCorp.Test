@@ -12,7 +12,7 @@ namespace MegaCorp.DataAccess
         public static Employee ToEmployee(DataRow employeeRow, out int departmentFK)
         {
             departmentFK = (int)employeeRow["DepartmentId"];
-            int id = (int)employeeRow["EmnployeeId"];
+            int id = (int)employeeRow["EmployeeId"];
             string firstname = (string)employeeRow["Firstname"];
             string lastname = (string)employeeRow["Lastname"];
             DateTime startDate = (DateTime)employeeRow["StartDate"];
