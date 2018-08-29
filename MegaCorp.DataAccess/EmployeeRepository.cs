@@ -24,7 +24,7 @@ namespace MegaCorp.DataAccess
             List<Employee> employees = new List<Employee>(0);
             foreach(DataRow employeeRow in emplyeeTable.Rows)
             {
-                Employee e = Convert.ToEmployee(employeeRow);
+                Employee e = Convert.ToEmployee(employeeRow, out int departmentFK);
                 employees.Add(e);
             }
             return employees;
